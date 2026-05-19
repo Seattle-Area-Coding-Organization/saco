@@ -10,7 +10,7 @@ const LINES: Line[] = [
   { kind: "comment", text: "// System initializing..." },
   { kind: "data", label: "STATUS:", value: "REGISTRATION OPEN" },
   { kind: "data", label: "DATE:", value: "MAY 23, 2026" },
-  { kind: "time", label: "TIME:", value: "11:30 AM - 5:00 PM"},
+  { kind: "data", label: "TIME:", value: "11:30 AM - 5:00 PM"},
   { kind: "data", label: "VENUE:", value: "CODING MIND ACADEMY" },
   {
     kind: "data",

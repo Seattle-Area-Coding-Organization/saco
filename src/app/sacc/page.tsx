@@ -17,8 +17,8 @@ const SACC_STATS = [
 
 const SACC_SCHEDULE = [
   { time: "11:30am - 12:00pm", event: "Arrival and check-in" },
-  { time: "12:00am - 12:30am", event: "Opening ceremony" },
-  { time: "12:30am - 1:00pm", event: "Lunch (provided)" },
+  { time: "12:00pm - 12:30pm", event: "Opening ceremony" },
+  { time: "12:30pm - 1:00pm", event: "Lunch (provided)" },
   { time: "1:00pm - 1:30pm", event: "Practice contest"},
   { time: "1:30pm - 4:30pm", event: "Contest time" },
   { time: "4:30pm - 5:00pm", event: "Awards ceremony" },

@@ -11,6 +11,7 @@ const NAV_LINKS = [
   { label: "SACC", href: "/sacc" },
   { label: "ABOUT US", href: "/about" },
   { label: "SPONSORS", href: "/sponsors" },
+  { label: "JOIN US", href: "/join" },
 ] as const;
 
 const DISCORD_URL = "https://discord.gg/s767nmxmg4";

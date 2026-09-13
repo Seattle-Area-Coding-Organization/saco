@@ -3,9 +3,32 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { initializeControls } from '../src/scripts/controls.js';
 
-const pages = ['index.html', 'about/index.html', 'sacc/index.html', 'sacc/2026/index.html', 'sponsors/index.html', 'join/index.html', '404.html'];
+const pages = readdirSync('dist', { recursive: true }).filter(file => file.endsWith('.html'));
+const sitemap = [...readFileSync('dist/sitemap.xml', 'utf8').matchAll(/<loc>(.*?)<\/loc>/g)].map(([, url]) => url);
+const titles = new Set();
+const descriptions = new Set();
+const canonicalURLs = [];
 for (const page of pages) {
   const html = readFileSync(join('dist', page), 'utf8');
+  const title = html.match(/<title>(.*?)<\/title>/)?.[1];
+  const description = html.match(/name="description" content="([^"]+)"/)?.[1];
+  assert(title && !titles.has(title), `${page}: unique, nonempty title`);
+  assert(description && !descriptions.has(description), `${page}: unique, nonempty description`);
+  titles.add(title);
+  descriptions.add(description);
+  if (page === '404.html') {
+    assert(html.includes('name="robots" content="noindex, follow"'), '404 must not be indexed');
+    assert(!html.includes('rel="canonical"'), '404 must not advertise a canonical page');
+  } else {
+    const canonical = `https://saco.dev/${page.replace(/(?:^|\/)index\.html$/, '').replace(/\.html$/, '')}`;
+    assert(html.includes(`rel="canonical" href="${canonical}"`), `${page}: canonical URL`);
+    assert(html.includes(`property="og:url" content="${canonical}"`), `${page}: sharing URL matches canonical`);
+    assert(!html.includes('noindex'), `${page}: indexable`);
+    canonicalURLs.push(canonical);
+  }
+  assert(html.includes('property="og:title"') && html.includes('name="twitter:title"'), `${page}: social titles`);
+  assert(html.includes('property="og:image" content="https://saco.dev/brand/social.png"'), `${page}: social image`);
+  assert(html.includes('property="og:image:alt"') && html.includes('name="twitter:image:alt"'), `${page}: social image descriptions`);
   assert.equal((html.match(/<h1(?:\s|>)/g) || []).length, 1, `${page}: one main heading`);
   assert(html.includes('name="description"'), `${page}: meta description`);
   assert(!/[—–]/.test(html), `${page}: plain punctuation`);
@@ -21,6 +44,9 @@ for (const page of pages) {
   }
   for (const [, id] of html.matchAll(/href="#([^"]+)"/g)) assert(html.includes(`id="${id}"`), `${page}: missing #${id}`);
 }
+assert.deepEqual(sitemap.sort(), canonicalURLs.sort(), 'Sitemap contains every indexable page exactly once');
+assert(readFileSync('dist/robots.txt', 'utf8').includes('Sitemap: https://saco.dev/sitemap.xml'), 'Robots links to sitemap');
+assert(!readdirSync('dist', { recursive: true }).some(file => file.endsWith('.DS_Store')), 'No Finder metadata in build');
 const overview = readFileSync('dist/sacc/index.html', 'utf8');
 const contest = readFileSync('dist/sacc/2026/index.html', 'utf8');
 assert.equal((contest.match(/<details>/g) || []).length, 6, 'All six native FAQs render');
@@ -32,6 +58,11 @@ assert(readFileSync('dist/sitemap.xml', 'utf8').includes('<loc>https://saco.dev/
 const application = readFileSync('dist/join/index.html', 'utf8');
 assert(application.includes('1FAIpQLScCsQac2yaXawoFPRp8BFLs1nxJsvo1h_dX84hHB-YCC9LmFw'), 'Original application destination preserved');
 const homepage = readFileSync('dist/index.html', 'utf8');
+const organization = JSON.parse(homepage.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1] || 'null');
+assert.equal(organization?.['@type'], 'Organization', 'Valid organization structured data');
+assert.equal(organization.name, 'Seattle Area Coding Organization');
+assert.equal(organization.url, 'https://saco.dev/');
+assert(existsSync(join('dist', new URL(organization.logo).pathname)), 'Organization logo exists');
 assert(homepage.includes('href="/sacc/2026"') && !homepage.includes('upcoming-events'), 'Homepage points to the past event archive');
 for (const html of [homepage, overview, contest]) assert(!html.includes('1FAIpQLScdr-aDxrZaHumGMvKSUixdmFY9L9Hor2aEvaHHa-31qWTYFw'), 'Expired registration is not offered');
 assert(!homepage.includes('interview-cake') && !homepage.includes('aops.png'), 'Homepage carousel contains only Gold and Platinum sponsors');

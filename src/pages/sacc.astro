@@ -1,0 +1,20 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { links } from '../data/site';
+---
+<Layout title="SACC | Seattle Area Computing Competition" description="SACO’s team programming competition for pre-college students. Find competition updates and browse past SACC events.">
+  <section class="page-heading container">
+    <p class="hero-name">Seattle Area Computing Competition</p>
+    <h1>SACC.</h1>
+    <p>Our in-person team programming contest for pre-college students. Solve algorithmic problems together and meet other programmers from across the region.</p>
+    <a class="button button-primary" href={links.discord} target="_blank" rel="noopener noreferrer">Join Discord for updates</a>
+  </section>
+  <section class="event-format container" aria-labelledby="archive-heading">
+    <h2 id="archive-heading">Past competitions.</h2>
+    <a class="archive-entry" href="/sacc/2026">
+      <h3>SACC 2026</h3>
+      <p><time datetime="2026-05-23">May 23, 2026</time><br />Coding Mind Academy, Redmond</p>
+      <span class="text-link">View archive</span>
+    </a>
+  </section>
+</Layout>

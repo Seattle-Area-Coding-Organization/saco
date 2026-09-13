@@ -1,0 +1,6 @@
+---
+interface Props { image: string; name: string; }
+const { image, name } = Astro.props;
+---
+<img class="logo-dark" src={`/sponsors/${image}`} alt={name} width="280" height="100" loading="lazy" />
+<img class="logo-light" src={`/sponsors/light/${image}`} alt={name} width="280" height="100" loading="lazy" />

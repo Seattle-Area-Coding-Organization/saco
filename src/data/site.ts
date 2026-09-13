@@ -9,7 +9,7 @@ export const navigation = [
   { label: 'SACC', href: '/sacc' },
   { label: 'About us', href: '/about' },
   { label: 'Sponsors', href: '/sponsors' },
-  { label: 'Organize', href: '/join' },
+  { label: 'Join us', href: '/join' },
 ];
 
 export const sponsors = [

@@ -6,6 +6,7 @@ import { team } from '../data/site';
   <section class="page-heading about-heading container">
     <h1>About SACO.</h1>
     <p>We’re students who enjoy competitive programming and want to make it easier for others to get started. We run SACO alongside school, writing contest problems and organizing events for students across the Pacific Northwest.</p>
+    <p>We started SACO to create more in-person competitive programming opportunities in Seattle and the Pacific Northwest. We want students to have a place to meet other programmers, tackle problems together, and experience a contest beyond their own school.</p>
   </section>
   <figure class="about-team-photo container"><img src="/photos/organizers-wide.webp" alt="SACO student organizers together outside Coding Mind Academy after the competition" width="1600" height="760" fetchpriority="high" /></figure>
   <section class="team-section container" aria-labelledby="team-title"><h2 id="team-title">Meet the team.</h2><div class="team-grid">{team.map(member => <article class="team-member"><img src={`/team/${member.image}`} alt={member.name} width="640" height="800" loading="lazy" /><h3>{member.name}</h3><p class="team-role">{member.role}</p><p class="team-school">{member.school}</p><p class="team-bio">{member.bio}</p></article>)}</div></section>

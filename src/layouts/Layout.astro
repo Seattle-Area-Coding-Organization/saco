@@ -6,7 +6,7 @@ import { links, navigation } from '../data/site';
 interface Props { title?: string; description?: string; noindex?: boolean; }
 const {
   title = 'SACO | Seattle Area Coding Organization',
-  description = 'SACO brings pre-college programmers across the Pacific Northwest together through team coding contests, workshops, and shared practice.',
+  description = 'SACO brings pre-college programmers across Seattle and the Pacific Northwest together through in-person team programming competitions.',
   noindex = false,
 } = Astro.props;
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';

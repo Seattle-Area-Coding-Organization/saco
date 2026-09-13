@@ -88,6 +88,17 @@ p { line-height: 1.75; }
 .hero-name { font-size: 14px; color: var(--muted); margin-bottom: 28px; letter-spacing: -.01em; }
 .hero-description { margin-top: 26px; max-width: 390px; color: var(--muted); font-size: 16px; line-height: 1.7; }
 .hero-actions { display: flex; gap: 30px; align-items: center; margin-top: 32px; }
+.upcoming-note { margin-top: 20px; max-width: 390px; color: var(--muted); font-size: 13px; }
+.upcoming-note a { text-decoration: underline; text-underline-offset: 3px; }
+.home-impact { padding-block: 28px; margin-bottom: 40px; border-block: 1px solid var(--line); display: flex; align-items: center; flex-wrap: wrap; gap: 24px 60px; }
+.home-impact h2 { font-size: 20px; letter-spacing: -.025em; }
+.impact-stats { display: flex; flex-wrap: wrap; gap: 20px 48px; }
+.impact-stats > div { display: flex; flex-direction: column-reverse; gap: 5px; }
+.impact-stats dt { color: var(--muted); font-size: 12px; }
+.impact-stats dd { font-size: 30px; letter-spacing: -.04em; }
+.role-list > div + div { margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--line); }
+.role-list dt { font-size: 20px; margin-bottom: 8px; }
+.role-list dd { color: var(--muted); font-size: 15px; line-height: 1.75; }
 .hero-event { min-width: 0; display: block; }
 .hero-event > img { width: 100%; height: 410px; object-fit: cover; object-position: center 48%; border-radius: 5px; }
 .hero-event-caption { display: flex; align-items: center; justify-content: space-between; gap: 20px; font-size: 13px; margin-top: 16px; }
@@ -194,16 +205,13 @@ summary::-webkit-details-marker { display: none; }
 .sponsor-tier h2 { font-size: 24px; }
 .tier-platinum { --tier-width: 340px; --tier-height: 120px; --tier-mobile-width: 175px; --tier-mobile-height: 80px; padding-block: 58px; }
 .tier-gold { --tier-width: 250px; --tier-height: 92px; --tier-mobile-width: 135px; --tier-mobile-height: 64px; }
-.tier-silver { --tier-width: 200px; --tier-height: 70px; --tier-mobile-width: 110px; --tier-mobile-height: 52px; padding-block: 34px; }
 .tier-bronze { --tier-width: 150px; --tier-height: 55px; --tier-mobile-width: 95px; --tier-mobile-height: 42px; padding-block: 28px; }
 .tier-platinum h2 { font-size: 30px; }
 .tier-gold h2 { font-size: 25px; }
-.tier-silver h2 { font-size: 21px; }
 .tier-bronze h2 { font-size: 18px; }
 .tier-logos { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
 .tier-logos a { display: flex; justify-content: center; align-items: center; min-height: 100px; }
 .tier-logos img { width: 100%; max-width: var(--tier-width); height: var(--tier-height); object-fit: contain; }
-.tier-available { grid-column: 1 / -1; color: var(--muted); font-size: 16px; display: flex; justify-content: space-between; align-items: center; gap: 25px; padding-block: 16px; }
 .sponsor-contact { padding-block: 55px 75px; display: grid; grid-template-columns: 1fr 1fr; gap: 10%; align-items: start; border-top: 1px solid var(--line); }
 .sponsor-contact p { margin-bottom: 24px; color: var(--muted); font-size: 15px; max-width: 400px; }
 .join-hero { display: grid; grid-template-columns: 1.1fr 1fr; gap: 70px; align-items: end; padding-block: 75px; }
@@ -332,7 +340,6 @@ summary::-webkit-details-marker { display: none; }
   .tier-logos { gap: 28px; }
   .tier-logos a { min-height: 75px; }
   .tier-logos img { width: 100%; max-width: var(--tier-mobile-width); height: var(--tier-mobile-height); }
-  .tier-available { padding-block: 0; align-items: start; flex-direction: column; gap: 4px; font-size: 14px; }
   .sponsor-contact { grid-template-columns: 1fr; gap: 30px; padding-block: 34px 52px; }
   .join-hero { grid-template-columns: 1fr; gap: 36px; padding-block: 45px 40px; }
   .join-hero h1 { font-size: clamp(44px, 9vw, 62px); }

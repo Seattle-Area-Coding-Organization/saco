@@ -3,12 +3,25 @@ import '@fontsource-variable/manrope';
 import '../styles/global.css';
 import { links, navigation } from '../data/site';
 
-interface Props { title?: string; description?: string; }
+interface Props { title?: string; description?: string; noindex?: boolean; }
 const {
   title = 'SACO | Seattle Area Coding Organization',
-  description = 'A student-run programming community for pre-college students across the Pacific Northwest. Learn, meet other coders, and compete at SACC.',
+  description = 'SACO brings pre-college programmers across the Pacific Northwest together through team coding contests, workshops, and shared practice.',
+  noindex = false,
 } = Astro.props;
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const canonical = new URL(path, Astro.site);
+const socialImage = new URL('/brand/social.png', Astro.site);
+const organization = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Seattle Area Coding Organization',
+  alternateName: 'SACO',
+  url: Astro.site?.href,
+  logo: new URL('/brand/wordmark.png', Astro.site).href,
+  description,
+  email: links.email.replace('mailto:', ''),
+};
 ---
 <!doctype html>
 <html lang="en">
@@ -16,16 +29,27 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
     <meta name="theme-color" content="#191a20" />
     <link rel="icon" href="/brand/icon.svg" type="image/svg+xml" />
-    <link rel="canonical" href={new URL(path, Astro.site)} />
+    {!noindex && <link rel="canonical" href={canonical} />}
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="SACO" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={new URL(path, Astro.site)} />
-    <meta property="og:image" content={new URL('/brand/social.png', Astro.site)} />
+    {!noindex && <meta property="og:url" content={canonical} />}
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="SACO | Seattle Area Coding Organization" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+    <meta name="twitter:image:alt" content="SACO | Seattle Area Coding Organization" />
+    {path === '/' && !noindex && <script type="application/ld+json" set:html={JSON.stringify(organization).replace(/</g, '\\u003c')} />}
     <title>{title}</title>
     <script is:inline>
       try {

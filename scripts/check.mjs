@@ -49,7 +49,7 @@ assert(readFileSync('dist/robots.txt', 'utf8').includes('Sitemap: https://saco.d
 assert(!readdirSync('dist', { recursive: true }).some(file => file.endsWith('.DS_Store')), 'No Finder metadata in build');
 const overview = readFileSync('dist/sacc/index.html', 'utf8');
 const contest = readFileSync('dist/sacc/2026/index.html', 'utf8');
-assert.equal((contest.match(/<details>/g) || []).length, 6, 'All six native FAQs render');
+assert.equal((contest.match(/<details>/g) || []).length, 5, 'All five native FAQs render');
 assert(overview.includes('Past competitions.') && overview.includes('href="/sacc/2026"'), 'SACC overview links to the historical edition');
 assert(contest.includes('Past event') && contest.includes('datetime="2026-05-23"'), 'Archive clearly identifies the past event');
 assert(contest.includes('rel="canonical" href="https://saco.dev/sacc/2026"'), 'Archive has its own canonical URL');

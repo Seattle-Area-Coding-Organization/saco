@@ -5,13 +5,8 @@ import { team } from '../data/site';
 <Layout title="About us | SACO" description="Meet the students behind the Seattle Area Coding Organization, a community for pre-college programmers across the Pacific Northwest.">
   <section class="page-heading about-heading container">
     <h1>About SACO.</h1>
-    <p>The Seattle Area Coding Organization (SACO) is a student-run programming community in the Pacific Northwest. We organize competitions, workshops, and practice sessions where pre-college students can learn from one another.</p>
+    <p>We’re students who enjoy competitive programming and want to make it easier for others to get started. We run SACO alongside school, writing contest problems and organizing events for students across the Pacific Northwest.</p>
   </section>
   <figure class="about-team-photo container"><img src="/photos/organizers-wide.webp" alt="SACO student organizers together outside Coding Mind Academy after the competition" width="1600" height="760" fetchpriority="high" /></figure>
-  <section class="about-values container" aria-label="Our mission">
-    <article><h2>Educate.</h2><p>Our workshops and study groups give students time to ask questions, try different approaches, and understand why a solution works.</p></article>
-    <article><h2>Compete.</h2><p>We write problems that reward careful thinking and bring teams together at SACC to put their skills to the test.</p></article>
-    <article><h2>Connect.</h2><p>We help students meet people beyond their own schools, find teammates, and stay in touch between events.</p></article>
-  </section>
   <section class="team-section container" aria-labelledby="team-title"><h2 id="team-title">Meet the team.</h2><div class="team-grid">{team.map(member => <article class="team-member"><img src={`/team/${member.image}`} alt={member.name} width="640" height="800" loading="lazy" /><h3>{member.name}</h3><p class="team-role">{member.role}</p><p class="team-school">{member.school}</p><p class="team-bio">{member.bio}</p></article>)}</div></section>
 </Layout>

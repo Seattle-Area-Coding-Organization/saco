@@ -146,7 +146,13 @@ figcaption { color: var(--muted); font-size: 12px; line-height: 1.6; padding-top
 .page-heading h1 { font-size: clamp(46px, 5.25vw, 74px); }
 .about-heading > p:not(.hero-name) { max-width: 760px; }
 .about-team-photo img { width: 100%; border-radius: 5px; }
-.team-section { padding-block: 60px 90px; }
+.about-values { display: grid; grid-template-columns: repeat(3, 1fr); gap: 56px; padding-block: 60px 66px; }
+.about-values h2 { font-size: 36px; }
+.about-values article:nth-child(1) h2 { color: var(--accent); }
+.about-values article:nth-child(2) h2 { color: #008882; }
+.about-values article:nth-child(3) h2 { color: #00ab6a; }
+.about-values p { font-size: 15px; color: var(--muted); margin-top: 19px; }
+.team-section { padding-block: 8px 90px; }
 .team-section > h2 { margin-bottom: 38px; }
 .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px; }
 .team-member > img { width: 100%; aspect-ratio: .88; object-fit: cover; object-position: center 30%; border-radius: 5px; }
@@ -303,7 +309,10 @@ summary::-webkit-details-marker { display: none; }
   .page-heading { padding-block: 45px 37px; }
   .page-heading h1 { font-size: clamp(42px, 7.5vw, 56px); }
   .page-heading > p:not(.hero-name) { font-size: 15px; margin-top: 24px; }
-  .team-section { padding-block: 40px 54px; }
+  .about-values { grid-template-columns: 1fr; gap: 30px; padding-block: 39px 44px; }
+  .about-values h2 { font-size: 31px; }
+  .about-values p { font-size: 14px; margin-top: 13px; }
+  .team-section { padding-block: 8px 54px; }
   .team-section > h2 { margin-bottom: 28px; }
   .team-grid { grid-template-columns: 1fr; gap: 38px; }
   .team-member > img { aspect-ratio: 1.03; object-position: center 25%; }

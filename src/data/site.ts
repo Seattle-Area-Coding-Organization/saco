@@ -1,5 +1,6 @@
 export const links = {
   discord: 'https://discord.gg/s767nmxmg4',
+  instagram: 'https://www.instagram.com/sacocoding/',
   email: 'mailto:sacocoding@gmail.com',
   application: 'https://docs.google.com/forms/d/e/1FAIpQLScCsQac2yaXawoFPRp8BFLs1nxJsvo1h_dX84hHB-YCC9LmFw/viewform',
 };
